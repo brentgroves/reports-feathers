@@ -28,5 +28,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://reports31:30331/"
+  "mongodb": "mongodb://adminuser:password123@reports31:30331/databaseName?authSource=admin"
 }
