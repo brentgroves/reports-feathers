@@ -9,7 +9,7 @@
   "authentication": {
     "entity": "user",
     "service": "users",
-    "secret": "PD9wJDwR2+UPuo0ki9V7GzdxfeY=",
+    "secret": "9kODLwToKGP5lDBDSBNrbCPPgcs=",
     "authStrategies": [
       "jwt",
       "local"
@@ -26,7 +26,14 @@
     "local": {
       "usernameField": "email",
       "passwordField": "password"
+    },
+    "oauth": {
+      "redirect": "/",
+      "github": {
+        "key": "ec541c05f0a0ace7e344",
+        "secret": "9325770fad57eb9f8fb4b235236ad661a692b249"
+      }
     }
   },
-  "mongodb": "mongodb://adminuser:password123@reports31:30331/databaseName?authSource=admin"
+  "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
 }
