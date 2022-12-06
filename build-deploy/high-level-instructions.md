@@ -34,3 +34,10 @@ How to debug react app from feathers?
 # validation
 mosquitto_pub -t reports31-report-complete -h reports31 -p 30231 -m "Hello World"
 
+https://www.sitepoint.com/crud-app-node-react-feathersjs/
+http://localhost:3030/oauth/github
+
+fetch("http://cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/base.css").then(req => req.text()).then(console.log)
+https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
+
+

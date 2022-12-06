@@ -1,3 +1,4 @@
+const logger = require('../../logger');
 const { Service } = require('feathers-mongoose');
 
 // exports.Users = class Users extends Service {
@@ -21,6 +22,7 @@ const getGravatar = email => {
 
 exports.Users = class Users extends Service {
   create (data, params) {
+    logger.info('creating user...');
     // This is the information we want from the user signup data
     const { email, password, githubId, name } = data;
     // Use the existing avatar image or return the Gravatar for the email
@@ -33,7 +35,10 @@ exports.Users = class Users extends Service {
       githubId,
       avatar
     };
-
+    logger.info('email:%s, avatar:%s', userData.email, userData.avatar)
+    // logger.error('Error message');
+    // logger.warn('Warning message');
+    
     // Call the original `create` method with existing `params` and new data
     return super.create(userData, params);
   }  
