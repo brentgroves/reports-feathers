@@ -40,4 +40,5 @@ http://localhost:3030/oauth/github
 fetch("http://cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/base.css").then(req => req.text()).then(console.log)
 https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 https://reactjs.org/docs/cdn-links.html
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 

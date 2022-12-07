@@ -29,9 +29,7 @@ app.use(helmet({
   contentSecurityPolicy: false
 }));
 app.use(cors());
-app.use(cors({
-  origin: 'http://cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/chat.css'
-}));
+// app.use(cors({ origin: 'http://example.com' , credentials :  true}));
 app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
