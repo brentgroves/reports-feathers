@@ -36,7 +36,7 @@
       "auth0": {
         "key": "15psN0K2xuwp3OUzW5Ldt567mBllSCHJ",
         "secret": "gTvl3BroTbwekvK1gR1u1kVb5hmwLh6qB_yU2BLbnuZdWQZ37ENmnGhf3vTCrwE4",
-        "subdomain": "dev-gfcd1ld5m2jtz0m0",
+        "subdomain": "dev-gfcd1ld5m2jtz0m0.us",
         "scope": ["openid", "profile", "email"]
       }      
     }
