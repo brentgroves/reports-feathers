@@ -25,4 +25,24 @@ module.exports = function (app) {
   return mongooseClient.model(modelName, schema);
 
 };
-
+/*
+# returned by auth0
+basic
+{
+  "sub": "waad|MwDn8JxKXRANG4m1xrRp6U4V3ZXeWbw4Z1T152yktDU",
+  "nickname": "moto",
+  "name": "moto",
+  "picture": "https://cdn.auth0.com/avatars/mo.png",
+  "updated_at": "2022-12-08T20:22:18.884Z"
+}
+extended
+{
+  "sub": "waad|MwDn8JxKXRANG4m1xrRp6U4V3ZXeWbw4Z1T152yktDU",
+  "given_name": "moto",
+  "family_name": "moto",
+  "nickname": "moto",
+  "name": "moto",
+  "picture": "https://cdn.auth0.com/avatars/mo.png",
+  "updated_at": "2022-12-08T20:34:02.850Z"
+}
+*/

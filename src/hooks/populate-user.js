@@ -4,18 +4,23 @@ const logger = require('../logger');
 // https://docs.feathersjs.com/guides/basics/hooks.html#populate-the-message-sender
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
-  logger.info('in populate-user');
 
   return async context => {
     // Get `app`, `method`, `params` and `result` from the hook context
+    logger.info('in populate-user');
+
     const { app, method, result, params } = context;
+    logger.info('context: %s',context);
+
     // Function that adds the user to a single message object
     const addUser = async message => {
       logger.info('in addUser')
- 
+      logger.info('message: %s',message);
+
       // Get the user based on their id, pass the `params` along so
       // that we get a safe version of the user data
       const user = await app.service('users').get(message.userId, params);
+      logger.info('after users.get message.userId=%s',message.userId);
 
       // Merge the message content to include the `user` object
       return {
