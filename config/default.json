@@ -37,22 +37,11 @@
         "key": "IGs15ncDb9uKQujCzzSYUm8qFgnqaTE5",
         "secret": "3dvZ_HTjYvX7CyF6bHsdZRzDqN6Jl1BCEq0xRklN03_hGZ1uRqO_jGMmlBEiueiV",
         "subdomain": "dev-gfcd1ld5m2jtz0m0.us",
-        "scope": ["user_impersonation","openid", "profile", "email"]
-      },
-      "microsoft": {
-        "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-        "access_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-        "oauth": 2,
-        "scope_delimiter": " "
-      }            
+        "scope": ["openid", "profile", "email"]
+      }
     }
   },
   "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
 }
 
-// "auth0": {
-//   "key": "15psN0K2xuwp3OUzW5Ldt567mBllSCHJ",
-//   "secret": "gTvl3BroTbwekvK1gR1u1kVb5hmwLh6qB_yU2BLbnuZdWQZ37ENmnGhf3vTCrwE4",
-//   "subdomain": "dev-gfcd1ld5m2jtz0m0.us",
-//   "scope": ["AllAccess","openid", "profile", "email"]
-// },
+
