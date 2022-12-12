@@ -36,7 +36,7 @@ module.exports = (options = {}) => {
     } else {
       // Otherwise just update the single result
 
-      context.result.data = await addUser(result);
+      context.result = await addUser(result);
       logger.info('context:%s', context)
       logger.info('context.result:%s', context.result)
     }

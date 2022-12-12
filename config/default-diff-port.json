@@ -1,0 +1,48 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "9kODLwToKGP5lDBDSBNrbCPPgcs=",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    },
+    "oauth": {
+      "redirect": "/",
+      "github": {
+        "key": "ec541c05f0a0ace7e344",
+        "secret": "9325770fad57eb9f8fb4b235236ad661a692b249"
+      },
+      "auth0": {
+        "key": "IGs15ncDb9uKQujCzzSYUm8qFgnqaTE5",
+        "secret": "3dvZ_HTjYvX7CyF6bHsdZRzDqN6Jl1BCEq0xRklN03_hGZ1uRqO_jGMmlBEiueiV",
+        "subdomain": "dev-gfcd1ld5m2jtz0m0.us",
+        "scope": ["openid", "profile", "email"]
+      }
+    }
+  },
+  "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
+}
+
+
+// https://github.com/feathersjs/feathers/issues/1615
