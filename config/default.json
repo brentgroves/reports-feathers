@@ -29,6 +29,7 @@
     },
     "oauth": {
       "redirect": "/",
+      // "redirect": "http://localhost:3000/",
       "github": {
         "key": "ec541c05f0a0ace7e344",
         "secret": "9325770fad57eb9f8fb4b235236ad661a692b249"
