@@ -1,4 +1,18 @@
 # next 
+https://docs.feathersjs.com/api/authentication/oauth.html#configuration
+name: oauthWithEmail
+app id: c0c996ac-c10c-4918-9683-09757bbae6c8
+secret:
+https://blog.feathersjs.com/how-to-setup-oauth-flow-with-featherjs-522bdecb10a8
+DEBUG="feathers-authentication-oauth2*"
+https://docs.feathersjs.com/cookbook/authentication/facebook.html#getting-profile-data
+https://stevelathrop.net/securing-a-node-js-rest-api-with-azure-ad-jwt-bearer-tokens/
+  "microsoft": {
+    "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+    "access_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+    "oauth": 2,
+    "scope_delimiter": " "
+  },
 Can we logout and login with a different account?
 Can we use http://localhost for a call back when this is deployed to k8s
 
