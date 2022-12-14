@@ -35,9 +35,9 @@
         "secret": "9325770fad57eb9f8fb4b235236ad661a692b249"
       },
       "microsoft": {
-        "key": "c0c996ac-c10c-4918-9683-09757bbae6c8",
+        "key": "29fa39d4-de57-4009-a46a-c561fa048562",
         "secret": "73d2e2ea-fba4-4170-8b4f-2e96218fb886",
-        "scope": ["Files.Read"]
+        "scope": ["api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info"]
       },
       "auth0": {
         "key": "IGs15ncDb9uKQujCzzSYUm8qFgnqaTE5",
@@ -50,4 +50,9 @@
   "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
 }
 
+// "microsoft": {
+//   "key": "c0c996ac-c10c-4918-9683-09757bbae6c8",
+//   "secret": "73d2e2ea-fba4-4170-8b4f-2e96218fb886",
+//   "scope": ["Files.Read"]
+// },
 

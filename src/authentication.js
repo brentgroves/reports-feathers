@@ -5,12 +5,18 @@ const { expressOauth, OAuthStrategy } = require('@feathersjs/authentication-oaut
 
 class MicrosoftStrategy extends OAuthStrategy {
   async getEntityData(profile) {
-    const baseData = await super.getEntityData(profile);
+    logger.info('in MicrosoftStrategy');
+    logger.info('in MicrosoftStrategy');
     logger.info('in MicrosoftStrategy');
     return {
-      ...baseData,
-      email: profile.email
+      email: 'test@microsoft.com'
     };
+
+    // const baseData = await super.getEntityData(profile);
+    // return {
+    //   ...baseData,
+    //   email: profile.email
+    // };
   }
 }
 
