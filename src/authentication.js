@@ -21,8 +21,30 @@ class MicrosoftStrategy extends OAuthStrategy {
 }
 
 
+// https://docs.feathersjs.com/cookbook/authentication/auth0.html#strategy
+
+
+
+class MyAuthService extends AuthenticationService {
+  async getPayload(authResult, params) {
+    // Call original `getPayload` first
+    console.log('in getPayLoad');
+
+    const payload = await super.getPayload(authResult, params);
+    const { user } = authResult;
+
+    if (user && user.permissions) {
+      payload.permissions = user.permissions;
+    }
+
+    return payload;
+  }
+}
+// https://docs.feathersjs.com/api/authentication/service.html#customization
+// https://docs.feathersjs.com/cookbook/authentication/stateless.html#configuration
 module.exports = app => {
-  const authentication = new AuthenticationService(app);
+  console.log('in AuthService');
+  const authentication = new MyAuthService(app);
 
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
@@ -32,4 +54,15 @@ module.exports = app => {
   app.use('/authentication', authentication);
   app.configure(expressOauth());
 };
-// https://docs.feathersjs.com/cookbook/authentication/auth0.html#strategy
+
+// module.exports = app => {
+//   const authentication = new AuthenticationService(app);
+
+//   authentication.register('jwt', new JWTStrategy());
+//   authentication.register('local', new LocalStrategy());
+//   // authentication.register('auth0', new Auth0Strategy());
+//   authentication.register('microsoft', new MicrosoftStrategy());
+
+//   app.use('/authentication', authentication);
+//   app.configure(expressOauth());
+// };
