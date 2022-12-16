@@ -24,7 +24,8 @@ module.exports = function (app) {
     // -d 'state=12345'    
     // https://stackoverflow.com/questions/67009128/how-to-get-azure-access-token-with-node-js-api-using-axios
     // https://stackoverflow.com/questions/31756756/axios-http-client-how-to-construct-http-post-url-with-form-params
-    axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
+    console.log('before post')
+    var res = axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
       querystring.stringify({
         client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
         scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
@@ -39,7 +40,7 @@ module.exports = function (app) {
       }).then(function(response) {
           console.log(response.data.access_token);
           // var decoded = jwt_decode(token);
-      });
+      }).catch((err) => response.status(500).json({ err: err.message }));
 
   });  
 };
