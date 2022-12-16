@@ -28,7 +28,6 @@
       "passwordField": "password"
     },
     "oauth": {
-      // "redirect": "/",
       "redirect": "http://localhost:3000/",
       "github": {
         "key": "ec541c05f0a0ace7e344",
@@ -49,10 +48,4 @@
   },
   "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
 }
-
-// "microsoft": {
-//   "key": "c0c996ac-c10c-4918-9683-09757bbae6c8",
-//   "secret": "73d2e2ea-fba4-4170-8b4f-2e96218fb886",
-//   "scope": ["Files.Read"]
-// },
 

@@ -1,3 +1,5 @@
+// require('dotenv').config();
+const axios = require('axios');
 const path = require('path');
 const favicon = require('serve-favicon');
 const compress = require('compression');
@@ -15,6 +17,8 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
+
+const routes = require('./routes');
 
 const authentication = require('./authentication');
 
@@ -51,10 +55,14 @@ app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
 
+// Set up our routes (see `routes/index.js`)
+routes(app);
+
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
 
 module.exports = app;
