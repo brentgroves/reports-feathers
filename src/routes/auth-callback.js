@@ -100,16 +100,35 @@ module.exports = function (app) {
             {
               logger.info('%o', err);
               logger.info('now try to login');
-              app
-              .service('authenticate')
-              .authenticate({
+              // https://docs.feathersjs.com/api/authentication/service.html#configuration    
+              app.service('/authentication')
+              .create({
                 strategy: 'local',
                 email,
                 password:'passwordless'
+              }).then(() => {
+                  logger.info('now try to logout');
               }).catch((err) => { 
-                logger.info('%o', err);
-                // response.status(500).json({ err: err.message })
-              });
+                  logger.info('%o', err);
+              })
+                  // app.service('/authentication').create(data) 
+              // or POST /authentication 
+              // with data as { strategy: name, ...loginData }. Internally authentication will then
+
+              // Call the strategy .authenticate method with data
+              // Create a JWT for the entity returned by the strategy
+              // Return the JWT (accessToken) and the additional information from the strategy
+              
+              // app
+              // .service('authenticate')
+              // .authenticate({
+              //   strategy: 'local',
+              //   email,
+              //   password:'passwordless'
+              // }).catch((err) => { 
+              //   logger.info('%o', err);
+              //   // response.status(500).json({ err: err.message })
+              // });
 
             }
             else
