@@ -27,7 +27,7 @@
     "test": "npm run lint && npm run mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json --fix",
     "dev": "nodemon src/",
-    "start": "node src/",
+    "start": "NODE_ENV=development node src/",
     "mocha": "mocha test/ --recursive --exit"
   },
   "standard": {
@@ -55,6 +55,7 @@
     "jwt-decode": "^3.1.2",
     "mongodb-core": "^3.2.7",
     "mongoose": "^6.7.5",
+    "process": "^0.11.10",
     "qs": "^6.11.0",
     "query-string": "^8.0.3",
     "serve-favicon": "^2.5.0",

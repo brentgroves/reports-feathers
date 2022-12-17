@@ -1,4 +1,9 @@
-// require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const NODE_ENV = process.env.NODE_ENV;
+// https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html
 const axios = require('axios');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -64,5 +69,21 @@ app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
 
+// https://stackoverflow.com/questions/67637546/why-when-i-debug-node-app-with-vscode-run-and-debug-process-env-node-env-is-und
+// add following to the launch.js
+// "env": { "NODE_ENV": "development" } 
+console.log(process.env);
+console.log(process.env.NODE_ENV)
 
+console.log('require.main=>' + require.main.filename);
+logger.info(`logger.info works here`);
+
+let myObj = {
+  name: "StackOverflow",
+};
+
+logger.info('Content: %o', myObj);
+logger.info('Content: %o', {...myObj});
 module.exports = app;
+
+// https://stackoverflow.com/questions/48027266/winston-logger-nodejs-debug-console-logs-not-showing-in-vscode

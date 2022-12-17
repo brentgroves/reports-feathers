@@ -6,6 +6,9 @@
 const axios = require('axios');
 const path = require('path');
 const jwt_decode = require('jwt-decode');
+// var querystring = require('querystring');
+var qs = require('qs');
+const logger = require('../logger');
 
 module.exports = function (app) {
 
@@ -24,23 +27,122 @@ module.exports = function (app) {
     // -d 'state=12345'    
     // https://stackoverflow.com/questions/67009128/how-to-get-azure-access-token-with-node-js-api-using-axios
     // https://stackoverflow.com/questions/31756756/axios-http-client-how-to-construct-http-post-url-with-form-params
-    console.log('before post')
+    // https://medium.com/@masnun/handling-timeout-in-axios-479269d83c68
+    // The default timeout is 0 set a longer timeout for the access_token request.
+    // https://blog.bitsrc.io/the-power-of-axios-cf45e085d924
+    // console.log(`before post:${code}`)
+    // console.log(`before post 2`)
+    // console.log('querystring.stringify=>' + querystring.stringify({
+    //   client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
+    //   scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
+    //   code:code,
+    //   redirect_uri:'http://localhost:3030/auth-callback',
+    //   grant_type:'authorization_code',
+    //   state:12345
+    // }))
+    // console.log(`before post 3`)
+    // console.log('qs.stringify=>' + qs.stringify({
+    //   client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
+    //   scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
+    //   code:code,
+    //   redirect_uri:'http://localhost:3030/auth-callback',
+    //   grant_type:'authorization_code',
+    //   state:12345
+    // }))
+    // let myObj = { 
+    //   client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
+    //   scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
+    //   code:code,
+    //   redirect_uri:'http://localhost:3030/auth-callback',
+    //   grant_type:'authorization_code',
+    //   state:12345
+    //  };
+    // logger.info('TEST')
+    // logger.info('This message will include a complete object: %O', myObj);
+    // console.log(`console log`);
     var res = axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
-      querystring.stringify({
+      qs.stringify({
         client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
         scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
         code:code,
         redirect_uri:'http://localhost:3030/auth-callback',
         grant_type:'authorization_code',
         state:12345
-      }), {
+      }),{
+        // timeout:10, // in ms the default is 0 which is no timeout limit.
         headers: { 
           "Content-Type": "application/x-www-form-urlencoded"
-        }
+        },
       }).then(function(response) {
-          console.log(response.data.access_token);
-          // var decoded = jwt_decode(token);
-      }).catch((err) => response.status(500).json({ err: err.message }));
+          // console.log(response.data.access_token);
+          const decoded = jwt_decode(response.data.access_token);
+          // logger.info('jwt:%s', JSON.stringify(decoded))
+          logger.info('jwt: %o', decoded);
+          const email = decoded.email;
+          const upn = decoded.upn;
+          const name = decoded.name;
+          const family_name = decoded.family_name;
+          const given_name = decoded.given_name;
+          const groups = decoded.groups;
+          const password = 'passwordless';
+
+          logger.info('jwt: %o', {email,upn,name,family_name,given_name,groups});
+          app
+          .service('users')
+          .create({ email, password })
+          .then(() => {
+            logger.info('now try to login');
+          }) 
+          .then(() => {
+            logger.info('now try to logout');
+          }).catch((err) => { 
+            if(err.code == 409)
+            {
+              logger.info('%o', err);
+              logger.info('now try to login');
+              app
+              .service('authenticate')
+              .authenticate({
+                strategy: 'local',
+                email,
+                password:'passwordless'
+              }).catch((err) => { 
+                logger.info('%o', err);
+                // response.status(500).json({ err: err.message })
+              });
+
+            }
+            else
+            {
+              logger.info('%o', err);
+            }
+            // console.log(err.message )
+            // response.status(500).json({ err: err.message })
+          });
+                
+          // app
+          // .authenticate({
+          //   strategy: 'local',
+          //   email,
+          //   password:'passwordless'
+          // })
+          // .catch(err => setError(err));
+
+          // function login() {
+          //   return client
+          //     .authenticate({
+          //       strategy: 'local',
+          //       email,
+          //       password,
+          //     })
+          //     .catch(err => setError(err));
+          // }
+          // https://www.codementor.io/@prasadsaya/working-with-arrays-in-mongodb-16s303gkd3
+        }).catch((err) => { 
+          logger.info('%o', err);
+        // console.log(err.message )
+        // response.status(500).json({ err: err.message })
+      });
 
   });  
 };
