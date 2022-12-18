@@ -14,7 +14,9 @@ module.exports = function (app) {
 
   // Initialize our service with any options it requires
   // app.get('/auth', route(req,res));
-  app.get('/auth-callback', async ({ query: { code }}, res) => {
+  // res.render('index.html', { title: 'Express' });
+  // https://stackoverflow.com/questions/28352871/in-express-how-do-i-redirect-a-user-to-an-external-url
+  app.get('/auth-callback', async ({ query: { code }}, res,next) => {
     // https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/authorize?client_id=29fa39d4-de57-4009-a46a-c561fa048562&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3030%2Foauth%2Fmicrosoft%2Fcallback&response_mode=query&scope=api%3A%2F%2F29fa39d4-de57-4009-a46a-c561fa048562%2FUser.Info&state=12345
     // https://docs.feathersjs.com/api/authentication/service.html#to-authenticate-an-external-request
     // curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -111,6 +113,8 @@ module.exports = function (app) {
                 password:'passwordless'
               }).then((authResult) => {
                   logger.info('now try to logout %o',authResult);
+                  // res.status(200).redirect("/");
+                  res.render('index.html', { title: 'Express' });
               }).catch((err) => { 
                   logger.info('%o', err);
               })
