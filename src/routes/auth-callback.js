@@ -88,6 +88,10 @@ module.exports = function (app) {
           const groups = decoded.groups;
           const password = 'passwordless';
 
+          If you res.redirect now before creating the user or a jwt then the browser will be
+          able to get the events from these 2 calls. 
+          or use message event to notify browser that we have the jwt. 
+          
           logger.info('jwt: %o', {email,upn,name,family_name,given_name,groups});
           app
           .service('users')
@@ -102,6 +106,7 @@ module.exports = function (app) {
             {
               logger.info('%o', err);
               logger.info('now try to login');
+
               Don't know if we can call create or authenticate from hear but try and respond by redirecting to / using res.redirect. because 
               the browser is just waiting until some response is sent back.
               create(data, params)
