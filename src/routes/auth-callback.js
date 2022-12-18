@@ -62,7 +62,7 @@ module.exports = function (app) {
     // logger.info('TEST')
     // logger.info('This message will include a complete object: %O', myObj);
     // console.log(`console log`);
-    var res = axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
+    var res2 = axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
       qs.stringify({
         client_id:'29fa39d4-de57-4009-a46a-c561fa048562',
         scope:'api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info',
@@ -102,6 +102,27 @@ module.exports = function (app) {
             {
               logger.info('%o', err);
               logger.info('now try to login');
+              Don't know if we can call create or authenticate from hear but try and respond by redirecting to / using res.redirect. because 
+              the browser is just waiting until some response is sent back.
+              create(data, params)
+              authService.create(data, params) -> Promise runs authService.authenticate with data, 
+              params and the list of strategies from authStrategies in the configuration. As with any other Feathers service, 
+              this method will be available to clients, e.g. running a POST /authentication.
+
+              If successful it will create a JWT with the payload taken from authService.getPayload and the options from 
+              authService.getTokenOptions. data must always contain a valid and allowed strategy name. Will emit the login event.
+              Try to call authenticate first and if that don't work try to call create().  
+              // app
+              // .service('/authenticate')
+              // .authenticate({
+              //   strategy: 'local',
+              //   email,
+              //   password:'passwordless'
+              // }).catch((err) => { 
+              //   logger.info('%o', err);
+              //   // response.status(500).json({ err: err.message })
+              // });
+
               // https://docs.feathersjs.com/api/authentication/service.html#configuration    
               // Call the strategy .authenticate method with data
               // Create a JWT for the entity returned by the strategy
@@ -113,7 +134,7 @@ module.exports = function (app) {
                 password:'passwordless'
               }).then((authResult) => {
                   logger.info('now try to logout %o',authResult);
-                  // res.status(200).redirect("/");
+                  res.redirect("/");
                   res.render('index.html', { title: 'Express' });
               }).catch((err) => { 
                   logger.info('%o', err);
@@ -126,16 +147,6 @@ module.exports = function (app) {
               // Create a JWT for the entity returned by the strategy
               // Return the JWT (accessToken) and the additional information from the strategy
               
-              // app
-              // .service('authenticate')
-              // .authenticate({
-              //   strategy: 'local',
-              //   email,
-              //   password:'passwordless'
-              // }).catch((err) => { 
-              //   logger.info('%o', err);
-              //   // response.status(500).json({ err: err.message })
-              // });
 
             }
             else
