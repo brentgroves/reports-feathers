@@ -88,7 +88,7 @@ module.exports = function (app) {
           const groups = decoded.groups;
           const password = 'passwordless';
 
-          Can the response contain the email address so the browser can call authenticate?
+          Can the response contain the email address so the browser can call authenticate? res.status(200).('email')
           auth responded with a redirect to microsoft's login function.
           microsoft authenticated the user and did an http request to auth-callback 
           the browser is waiting for a response from that redirect before allowing the user 
