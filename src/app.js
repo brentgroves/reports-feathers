@@ -17,12 +17,12 @@ const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 
-
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
 
+// https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
 const routes = require('./routes');
 
 const authentication = require('./authentication');
@@ -60,7 +60,7 @@ app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
 
-// Set up our routes (see `routes/index.js`)
+// Set up non-service routes (see `routes/index.js`)
 routes(app);
 
 // Configure a middleware for 404s and the error handler
@@ -84,6 +84,7 @@ let myObj = {
 
 logger.info('Content: %o', myObj);
 logger.info('Content: %o', {...myObj});
+
 module.exports = app;
 
 // https://stackoverflow.com/questions/48027266/winston-logger-nodejs-debug-console-logs-not-showing-in-vscode

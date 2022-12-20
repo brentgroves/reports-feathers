@@ -6,17 +6,20 @@ const populateUser = require('../../hooks/populate-user');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [],
+    // all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [processMessage()],
+    create: [],
+    // create: [processMessage()],
     update: [],
     patch: [],
     remove: []
   },
 
   after: {
-    all: [populateUser()],
+    all: [],
+    // all: [populateUser()],
     find: [],
     get: [],
     create: [],
