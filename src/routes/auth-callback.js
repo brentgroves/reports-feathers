@@ -81,6 +81,46 @@ module.exports = function (app) {
               logger.info('%o', err);
               logger.info('now try to login');
               res.redirect(`http://localhost:3000/?email=${email}`);
+              // app.service('/authentication')
+              // .create({
+              //   strategy: 'local',
+              //   email,
+              //   password:'passwordless'
+              // }).then((authResult) => {
+              //     logger.info('now try to logout %o',authResult);
+              //     res.redirect(`http://localhost:3000`);
+              //     // res.render('index.html', { title: 'Express' });
+              // }).catch((err) => { 
+              //     logger.info('%o', err);
+              //     res.redirect(`http://localhost:3000/?email=${email}`);
+              // })
+
+              // app.service('/authentication')
+              // .authenticate({
+              //   strategy: 'local',
+              //   email,
+              //   // email:'brentgroves@1hkt5t.onmicrosoft.com',
+              //   password:'passwordless'
+              // })
+              // .then(() => {
+              //   res.redirect(`http://localhost:3000`);
+              // })
+              // .catch((err) => { 
+              //     logger.info('%o', err);
+              //     app.service('/authentication')
+              //     .create({
+              //       strategy: 'local',
+              //       email,
+              //       password:'passwordless'
+              //     }).then((authResult) => {
+              //         logger.info('now try to logout %o',authResult);
+              //         res.redirect(`http://localhost:3000`);
+              //         // res.render('index.html', { title: 'Express' });
+              //     }).catch((err) => { 
+              //         logger.info('%o', err);
+              //         res.redirect(`http://localhost:3000/?email=${email}`);
+              //     })
+              // })
 
               // res.redirect("/");
               // app
