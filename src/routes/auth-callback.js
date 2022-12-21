@@ -37,7 +37,6 @@ module.exports = function (app) {
     //Extracting code and state
     const { state, code } = req.query;
     g_state = state;
-    res.redirect("http://localhost:3000/?session_id=2");
 
     var res2 = axios.post('https://login.microsoftonline.com/5269b021-533e-4702-b9d9-72acbc852c97/oauth2/v2.0/token',
       qs.stringify({
@@ -72,6 +71,7 @@ module.exports = function (app) {
           .create({ email, password })
           .then(() => {
             logger.info('now try to login');
+            res.redirect(`http://localhost:3000/?email=${email}`);
           }) 
           .then(() => {
             logger.info('now try to logout');
@@ -80,29 +80,31 @@ module.exports = function (app) {
             {
               logger.info('%o', err);
               logger.info('now try to login');
+              res.redirect(`http://localhost:3000/?email=${email}`);
+
               // res.redirect("/");
-              app
-              .service('messages')
-              .create({ text:'test',userId:'test' })
-              .catch((err) => { 
-              logger.info('%o', err);
-              });              
+              // app
+              // .service('messages')
+              // .create({ text:'test',userId:'test' })
+              // .catch((err) => { 
+              // logger.info('%o', err);
+              // });              
               // https://docs.feathersjs.com/api/authentication/service.html#configuration    
               // Call the strategy .authenticate method with data
               // Create a JWT for the entity returned by the strategy
               // Return the JWT (accessToken) and the additional information from the strategy
-              app.service('/authentication')
-              .create({
-                strategy: 'local',
-                email,
-                password:'passwordless'
-              }).then((authResult) => {
-                  logger.info('now try to logout %o',authResult);
-                  res.redirect("/");
-                  // res.render('index.html', { title: 'Express' });
-              }).catch((err) => { 
-                  logger.info('%o', err);
-              })
+              // app.service('/authentication')
+              // .create({
+              //   strategy: 'local',
+              //   email,
+              //   password:'passwordless'
+              // }).then((authResult) => {
+              //     logger.info('now try to logout %o',authResult);
+              //     res.redirect("/");
+              //     // res.render('index.html', { title: 'Express' });
+              // }).catch((err) => { 
+              //     logger.info('%o', err);
+              // })
               // res.redirect('/');
               // app.service('/authentication').create(data) 
               // or POST /authentication 

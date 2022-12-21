@@ -1,8 +1,4 @@
 // require URLSearchParams;
-<<<<<<< HEAD
-const logger = require('../logger');
-=======
->>>>>>> 99eb59903a15389af08d46ff30884b441bcd67d2
 function route (req, res) {
   res.redirect(
     `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`,
@@ -13,16 +9,8 @@ module.exports = function (app) {
 
   // Initialize our service with any options it requires
   // app.get('/auth', route(req,res));
-<<<<<<< HEAD
 
   app.get('/auth', (req, res) => {
-
-    // logger.info('auth session: %o', session);
-    // logger.info('auth userid: %s', userid);
-=======
-
-  app.get('/auth', (req, res) => {
->>>>>>> 99eb59903a15389af08d46ff30884b441bcd67d2
     // const urlEncoded = new URLSearchParams(query).toString();
   // const { code, client_id } = req.query;
     const state=11111
