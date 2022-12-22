@@ -10,13 +10,21 @@ module.exports = function (app) {
   const schema = new mongooseClient.Schema({
     email: { type: String, unique: true, lowercase: true },
     name: { type: String },
+    family_name: { type: String },
+    given_name: { type: String },
+    groups: {type: Array },        
     password: { type: String },
     githubId: { type: String },
     avatar: { type: String },
   }, {
     timestamps: true
   });
-
+  // const upn = decoded.upn;
+  // const name = decoded.name;
+  // const family_name = decoded.family_name;
+  // const given_name = decoded.given_name;
+  // const groups = decoded.groups;
+  // const password = 'passwordless';
   // This is necessary to avoid model compilation errors in watch mode
   // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel
   if (mongooseClient.modelNames().includes(modelName)) {

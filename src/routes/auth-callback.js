@@ -64,11 +64,19 @@ module.exports = function (app) {
           const given_name = decoded.given_name;
           const groups = decoded.groups;
           const password = 'passwordless';
-
+          // email: { type: String, unique: true, lowercase: true },
+          // name: { type: String },
+          // family_name: { type: String },
+          // given_name: { type: String },
+          // groups: {type: Array },        
+          // password: { type: String },
+          // githubId: { type: String },
+          // avatar: { type: String },
+      
           logger.info('jwt: %o', {email,upn,name,family_name,given_name,groups});
           app
           .service('users')
-          .create({ email, password })
+          .create({ email, name, family_name,given_name,groups, password })
           .then(() => {
             logger.info('now try to login');
             res.redirect(`http://localhost:3000/?email=${email}`);

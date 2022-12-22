@@ -26,17 +26,29 @@ exports.Users = class Users extends Service {
     logger.info('data is %s', data)
     // This is the information we want from the user signup data
     // 
-    const { email, password, githubId, name } = data;
+    const { email, name,family_name,given_name,groups,password, githubId,  } = data;
     // Use the existing avatar image or return the Gravatar for the email
     const avatar = data.avatar || getGravatar(email);
     // The complete user
     const userData = {
       email,
       name,
+      family_name,
+      given_name,
+      groups,
       password,
       githubId,
       avatar
     };
+    // email: { type: String, unique: true, lowercase: true },
+    // name: { type: String },
+    // family_name: { type: String },
+    // given_name: { type: String },
+    // groups: {type: Array },        
+    // password: { type: String },
+    // githubId: { type: String },
+    // avatar: { type: String },
+
     logger.info('email:%s, avatar:%s, auth0Id:%s', userData.email, userData.avatar, userData.name)
     // logger.error('Error message');
     // logger.warn('Warning message');
