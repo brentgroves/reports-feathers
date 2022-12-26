@@ -86,9 +86,28 @@ module.exports = function (app) {
           }).catch((err) => { 
             if(err.code == 409)
             {
-              logger.info('%o', err);
-              logger.info('now try to login');
-              res.redirect(`http://localhost:3000/?email=${email}`);
+              // groups may have changed
+              const lc_email=email.toLowerCase();
+              app
+              .service('users')
+              .find({ query: { email: lc_email } })
+              .then((userInfo) => {
+                app
+                .service('users')
+                .update(userInfo.data[0]._id, { email:lc_email, name, family_name,given_name,groups, password })
+                .then(() => {
+                  logger.info('now try to login');
+                  res.redirect(`http://localhost:3000/?email=${email}`);
+                }).catch((err) => { 
+                    logger.info('%o', err);
+                });
+  
+              }).catch((err) => { 
+                  logger.info('%o', err);
+              });
+
+              // logger.info('now try to login');
+              // res.redirect(`http://localhost:3000/?email=${email}`);
               // app.service('/authentication')
               // .create({
               //   strategy: 'local',

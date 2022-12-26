@@ -56,4 +56,34 @@ exports.Users = class Users extends Service {
     // Call the original `create` method with existing `params` and new data
     return super.create(userData, params);
   }  
+  // https://documenter.getpostman.com/view/3967924/RW1Yq1a8
+  // https://feathersjs.com/api/client/rest.html
+  // https://feathersjs.com/api/services.html#update-id-data-params|Feathers
+  update (id, data, params) {
+    logger.info('updating user...');
+    logger.info('data is %s', data)
+    const { email, name,family_name,given_name,groups,password, githubId,  } = data;
+
+    // data to be updated
+    const userData = {
+      email,
+      groups
+    };
+    // email: { type: String, unique: true, lowercase: true },
+    // name: { type: String },
+    // family_name: { type: String },
+    // given_name: { type: String },
+    // groups: {type: Array },        
+    // password: { type: String },
+    // githubId: { type: String },
+    // avatar: { type: String },
+
+    logger.info('email:%s, groups:%o', userData.email, userData.groups)
+    // logger.error('Error message');
+    // logger.warn('Warning message');
+    
+    // Call the original `create` method with existing `params` and new data
+    return super.update(id, data, params);
+    // return super.update(id, userData, params);
+  }   
 };
