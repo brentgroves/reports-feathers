@@ -59,15 +59,24 @@ exports.Users = class Users extends Service {
   // https://documenter.getpostman.com/view/3967924/RW1Yq1a8
   // https://feathersjs.com/api/client/rest.html
   // https://feathersjs.com/api/services.html#update-id-data-params|Feathers
+  // I created this update just for debugging the super.update() function 
+  // does not need to be changed .
   update (id, data, params) {
     logger.info('updating user...');
     logger.info('data is %s', data)
     const { email, name,family_name,given_name,groups,password, githubId,  } = data;
 
+    const avatar = data.avatar || getGravatar(email);
+
     // data to be updated
     const userData = {
       email,
-      groups
+      name,
+      family_name,
+      given_name,
+      groups,
+      password,
+      avatar
     };
     // email: { type: String, unique: true, lowercase: true },
     // name: { type: String },
@@ -83,7 +92,7 @@ exports.Users = class Users extends Service {
     // logger.warn('Warning message');
     
     // Call the original `create` method with existing `params` and new data
-    return super.update(id, data, params);
-    // return super.update(id, userData, params);
+    // return super.update(id, data, params);
+    return super.update(id, userData, params);
   }   
 };

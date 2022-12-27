@@ -24,8 +24,13 @@ Was able to return an email address but not a security group using an auth0 saml
 https://developer.microsoft.com/
 main account: brentgroves@1hkt5t.onmicrosoft.com
 AlexW@1hkt5t.onmicrosoft.com
+AdeleV@1hkt5t.onmicrosoft.com
+DiegoS@1hkt5t.onmicrosoft.com
 EAxejwisiakJip3
 domain:1hkt5t.onmicrosoft.com
+
+
+
 # the auth0 account used
 brent.groves@gmail.com
 Could only get the email to return using an Auth0 SAML account.
