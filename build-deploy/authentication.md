@@ -1,4 +1,6 @@
 # next 
+https://stackoverflow.com/questions/76987415/how-do-i-specify-the-login-hint-in-featherjs-oauth
+https://feathersjs.com/cookbook/authentication/auth0.html
 https://docs.feathersjs.com/api/authentication/oauth.html#configuration
 name: oauthWithEmail
 app id: c0c996ac-c10c-4918-9683-09757bbae6c8

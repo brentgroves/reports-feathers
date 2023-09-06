@@ -46,6 +46,6 @@
       }
     }
   },
-  "mongodb": "mongodb://reports31:30311/reports_feathers"
+  "mongodb": "mongodb://root:password@reports31:30331/reports_feathers"
 }
 
