@@ -29,13 +29,20 @@
     },
     "oauth": {
       "redirect": "http://localhost:3000/",
+      "github": {
+        "key": "ec541c05f0a0ace7e344",
+        "secret": "9325770fad57eb9f8fb4b235236ad661a692b249"
+      },
       "microsoft": {
         "key": "29fa39d4-de57-4009-a46a-c561fa048562",
-        "secret": "QFf8Q~W2W5VjfCYep6lw6pItIBzt7r8nVbyJxbeE",
-        "scope": [
-          "openid"
-        ]
-        
+        "secret": "73d2e2ea-fba4-4170-8b4f-2e96218fb886",
+        "scope": ["api://29fa39d4-de57-4009-a46a-c561fa048562/User.Info"]
+      },
+      "auth0": {
+        "key": "IGs15ncDb9uKQujCzzSYUm8qFgnqaTE5",
+        "secret": "3dvZ_HTjYvX7CyF6bHsdZRzDqN6Jl1BCEq0xRklN03_hGZ1uRqO_jGMmlBEiueiV",
+        "subdomain": "dev-gfcd1ld5m2jtz0m0.us",
+        "scope": ["openid", "profile", "email"]
       }
     }
   },

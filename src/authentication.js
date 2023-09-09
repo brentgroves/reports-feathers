@@ -3,19 +3,19 @@ const { AuthenticationService, JWTStrategy } = require('@feathersjs/authenticati
 const { LocalStrategy } = require('@feathersjs/authentication-local');
 const { expressOauth, OAuthStrategy } = require('@feathersjs/authentication-oauth');
 
-// class MicrosoftStrategy extends OAuthStrategy {
-//   async getEntityData(profile) {
-//     return {
-//       email: 'test@microsoft.com'
-//     };
+class MicrosoftStrategy extends OAuthStrategy {
+  async getEntityData(profile) {
+  //   return {
+  //     email: 'test@microsoft.com'
+  //   };
 
-//     // const baseData = await super.getEntityData(profile);
-//     // return {
-//     //   ...baseData,
-//     //   email: profile.email
-//     // };
-//   }
-// }
+    const baseData = await super.getEntityData(profile);
+    return {
+      ...baseData,
+      mail: profile.mail
+    };
+  }
+}
 
 
 // https://docs.feathersjs.com/cookbook/authentication/auth0.html#strategy
@@ -47,7 +47,7 @@ module.exports = app => {
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
   // authentication.register('auth0', new Auth0Strategy());
-  // authentication.register('microsoft', new MicrosoftStrategy());
+  authentication.register('microsoft', new MicrosoftStrategy());
 
   app.use('/authentication', authentication);
   app.configure(expressOauth());

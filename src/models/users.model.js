@@ -8,17 +8,25 @@ module.exports = function (app) {
   const modelName = 'users';
   const mongooseClient = app.get('mongooseClient');
   const schema = new mongooseClient.Schema({
-    email: { type: String, unique: true, lowercase: true },
-    name: { type: String },
-    family_name: { type: String },
-    given_name: { type: String },
-    groups: {type: Array },        
-    password: { type: String },
-    githubId: { type: String },
+    microsoftId:{ type: String },
+    mail:{ type: String, unique: true, lowercase: true },
     avatar: { type: String },
   }, {
     timestamps: true
   });
+
+  // const schema = new mongooseClient.Schema({
+  //   email: { type: String, unique: true, lowercase: true },
+  //   name: { type: String },
+  //   family_name: { type: String },
+  //   given_name: { type: String },
+  //   groups: {type: Array },        
+  //   password: { type: String },
+  //   githubId: { type: String },
+  //   avatar: { type: String },
+  // }, {
+  //   timestamps: true
+  // });
   // const upn = decoded.upn;
   // const name = decoded.name;
   // const family_name = decoded.family_name;
